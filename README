@@ -1,8 +1,7 @@
 This works kinda like mallard except there is no RZP step, it is much slower, it uses NISSY, but it saves ALL the EOs, DRs, and final solutions to a csv file
+Most of the slowness compared to Mallard comes from using -N in the EO->DR step because NISS solutions take a while
 
-
-you need to change the nissy_path variable to the path to the directory where the nissy executable is
-you also may need to change the nissy_filename variable to the name of the nissy executable file
+you need to change the nissy_filepath variable to the filepath where you have your nissy executable
 
 
 Put 0 in preset to set own limits

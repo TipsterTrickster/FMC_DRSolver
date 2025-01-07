@@ -5,8 +5,7 @@ from itertools import groupby
 import csv
 
 # Configuration
-nissy_path = "/usr/local/bin"
-nissy_filename = "nissy"
+nissy_filepath = "/usr/local/bin/nissy"
 
 preset = int(input("Preset (0 CUSTOM): "))
 
@@ -88,7 +87,7 @@ def variations(inputList):
 def EOSolver(scram):
 
     scrambleString = f'solve eo -t 7 -M {eoLength} -N {scram}'
-    p = subprocess.Popen(nissy_filename, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
+    p = subprocess.Popen(nissy_filepath, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
 
     nOutput = p.communicate(input=bytes(scrambleString,'utf-8'))
     nOutput = nOutput[0].decode()
@@ -111,7 +110,7 @@ def DRSolver(scram, eos):
         scrambleList = [f'\n{scram} {eo[0]}' for eo in geos]
 
         scrambleString = f'solve dr-eo -i -t 8 -M {drLength - eolen} {Niss}' + ' '.join(scrambleList) + '\n'
-        p = subprocess.Popen(nissy_filename, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
+        p = subprocess.Popen(nissy_filepath, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
         nOutput = p.communicate(input=bytes(scrambleString,'utf-8'))
 
 
@@ -148,7 +147,7 @@ def DRFINSolver(scram, drs):
         drlen = gdrs[0][1]
         scrambleList = [f'\n{scram} {dr[0]}' for dr in gdrs]
         scrambleString = f'solve drfin -i -t 8 -M {solutionLength - drlen}' + ' '.join(scrambleList) + '\n'
-        p = subprocess.Popen(nissy_filename, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
+        p = subprocess.Popen(nissy_filepath, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
         nOutput = p.communicate(input=bytes(scrambleString,'utf-8'))
         nOutput = nOutput[0].decode()
         nOutput = re.split(">>> Line: |nissy-# ", nOutput)
@@ -182,7 +181,7 @@ def DRSLICESolver(scram, drs):
         drlen = gdrs[0][1]
         scrambleList = [f'\n{scram} {dr[0]}' for dr in gdrs]
         scrambleString = f'solve drslice -i -t 8 -M {sliceSLenth - drlen}' + ' '.join(scrambleList) + '\n'
-        p = subprocess.Popen(nissy_filename, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
+        p = subprocess.Popen(nissy_filepath, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
         nOutput = p.communicate(input=bytes(scrambleString,'utf-8'))
         nOutput = nOutput[0].decode()
         nOutput = re.split(">>> Line: |nissy-# ", nOutput)
@@ -215,7 +214,7 @@ def HTRSolver(scram, eos):
         eolen = max(geos[0][1], 7)
         scrambleList = [f'\n{scram} {eo[0]}' for eo in geos]
         scrambleString = f'solve htr -i -t 8 -M {htrLenth - eolen} {Niss}' + ' '.join(scrambleList) + '\n'
-        p = subprocess.Popen(nissy_filename, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
+        p = subprocess.Popen(nissy_filepath, shell = True, stdout=subprocess.PIPE, stdin=subprocess.PIPE,)
         nOutput = p.communicate(input=bytes(scrambleString,'utf-8'))
         nOutput = nOutput[0].decode()
         nOutput = re.split(">>> Line: |nissy-# ", nOutput)
