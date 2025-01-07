@@ -1,0 +1,21 @@
+This works kinda like mallard except there is no RZP step, it is much slower, it uses NISSY, but it saves ALL the EOs, DRs, and final solutions to a csv file
+
+
+you need to change the nissy_path variable to the path to the directory where the nissy executable is
+you also may need to change the nissy_filename variable to the name of the nissy executable file
+
+
+Put 0 in preset to set own limits
+
+preset 1:
+5 Move EOs with NISS
+11 move DRs with NISS
+21 move solutions
+
+preset 2
+5 Move EOs with NISS
+12 move liner DRs (no switching during DR)
+22 move solutions
+
+
+One issue I have been too lazy to fix is filtering out redundant solutions (IE contains R' R2 or smth)
